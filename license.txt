@@ -1,0 +1,21 @@
+Files:    machete.sql, 
+          machete-employer.sql, 
+          machete-work.sql, 
+          machete-worker.sql
+Author:   Chaim Eliyah
+Owner:    Savage Learning, LLC
+Created:  2012/06/17 
+Modified: 2015/08/04
+License:  GPL v3
+Project:  Navaja API
+Contact:  LifeStack, LLC
+
+Copyright 2011 Savage Learning, LLC, all rights reserved.
+
+These source files are free software, under either the GPL v3 license or a BSD style license, as supplied with this software.
+
+This source file is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
+
+For details please refer to: 
+http://www.github.com/jcii/machete/
+

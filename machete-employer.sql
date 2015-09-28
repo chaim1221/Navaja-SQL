@@ -1,7 +1,7 @@
 ﻿CREATE SCHEMA IF NOT EXISTS employer;
 
 CREATE TABLE IF NOT EXISTS employer.profile(
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , returnCustomer boolean NOT NULL
   , receiveUpdates boolean NOT NULL
   , name varchar(50) NOT NULL
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS employer.profile(
 );
 
 CREATE TABLE IF NOT EXISTS employer.business(
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , profileId integer NOT NULL REFERENCES employer.profile
   , name varchar(50) NOT NULL
   , federalTaxId varchar(50) NOT NULL
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS employer.business(
 
 -- an employer must have an address record to hire a worker
 CREATE TABLE IF NOT EXISTS employer.address(
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , profileId integer NOT NULL REFERENCES employer.profile
   , businessId integer REFERENCES employer.business -- not null = business address
   , address1 varchar(50) NOT NULL
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS employer.address(
 );
 
 CREATE TABLE IF NOT EXISTS employer.review(
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , profileId integer NOT NULL REFERENCES employer.profile
   , rating smallint NOT NULL
   , culture varchar(5) NOT NULL

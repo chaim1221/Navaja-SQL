@@ -1,9 +1,10 @@
 ﻿CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 CREATE SCHEMA IF NOT EXISTS work;
 
 CREATE TABLE IF NOT EXISTS work.order(
-    id uuid PRIMARY KEY
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid()
   , englishMasteryRequired smallint NOT NULL
   , workerSkillId integer NOT NULL REFERENCES worker.skill
   , masteryRequired smallint NOT NULL
@@ -13,7 +14,7 @@ CREATE TABLE IF NOT EXISTS work.order(
 );
 
 CREATE TABLE IF NOT EXISTS work.offer (
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , orderId uuid REFERENCES work.order
   , workerProfileId integer REFERENCES worker.profile
   , meetsSponsorshipRequirements boolean NOT NULL
@@ -23,7 +24,7 @@ CREATE TABLE IF NOT EXISTS work.offer (
 );
 
 CREATE TABLE IF NOT EXISTS work.assignment(
-    id integer PRIMARY KEY
+    id SERIAL PRIMARY KEY
   , orderId uuid REFERENCES work.order
   , workerProfileId integer REFERENCES worker.profile
   , distanceFromWorker decimal NOT NULL

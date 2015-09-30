@@ -3,7 +3,7 @@
     "fs": "0.0.2"
   },
   "name": "navaja-sql",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Contains SQL scripts to create the Navaja-API database.",
   "main": "app.js",
   "scripts": {

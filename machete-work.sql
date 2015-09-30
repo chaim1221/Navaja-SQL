@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS work.order(
   , "englishMasteryRequired" smallint NOT NULL
   , "workerSkillId" integer NOT NULL REFERENCES worker.skill
   , "masteryRequired" smallint NOT NULL
-  , "timeNeeded" timestamp NOT NULL
+  , "timeNeeded" timestamptz NOT NULL
   , "proposedWage" decimal NOT NULL
   , "active" boolean NOT NULL
 );

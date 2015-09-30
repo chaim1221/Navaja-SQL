@@ -4,7 +4,9 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 CREATE SCHEMA IF NOT EXISTS work;
 
 CREATE TABLE IF NOT EXISTS work.order(
-    "id" uuid PRIMARY KEY DEFAULT gen_random_uuid()
+    "id" SERIAL PRIMARY KEY
+    --uuid PRIMARY KEY DEFAULT gen_random_uuid()
+    --TODO: Get the above working.
   , "employerProfileId" integer NOT NULL REFERENCES employer.profile
   , "englishMasteryRequired" smallint NOT NULL
   , "workerSkillId" integer NOT NULL REFERENCES worker.skill
@@ -17,12 +19,12 @@ CREATE TABLE IF NOT EXISTS work.order(
 -- option: use postGIS for location f(x)s
 CREATE TABLE IF NOT EXISTS work.offer (
     "id" SERIAL PRIMARY KEY
-  , "orderId" uuid REFERENCES work.order
+  , "orderId" integer REFERENCES work.order
   , "workerProfileId" integer REFERENCES worker.profile
   , "meetsSponsorshipRequirements" boolean NOT NULL
   , "location" point NOT NULL
   , "transportationMethodId" integer NOT NULL
-  , "timePromised" timestamp NOT NULL
+  , "timePromised" timestamptz NOT NULL
   , "counterOffer" decimal NOT NULL
   , "active" boolean NOT NULL
 );

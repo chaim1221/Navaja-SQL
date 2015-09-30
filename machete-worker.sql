@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS worker.profile(
   , "name" varchar(50) NOT NULL
   , "email" varchar(254) NOT NULL
   , "password" varchar(250) NOT NULL
-  , "phonePrimary" varchar(10) NOT NULL
-  , "phoneSecondary" varchar(10)
+  , "phonePrimary" varchar(12) NOT NULL
+  , "phoneSecondary" varchar(12)
   , "active" boolean NOT NULL
 );
 
@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS worker.sponsorship(
     "id" SERIAL PRIMARY KEY
   , "profileId" integer NOT NULL REFERENCES worker.profile
   , "employerProfileId" integer NOT NULL REFERENCES employer.profile
+  , "culture" varchar(5) NOT NULL
   , "workerSkillId" integer NOT NULL REFERENCES worker.skill
   , "mastery" smallint NOT NULL
   , "title" varchar(50) NOT NULL

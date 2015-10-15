@@ -2,17 +2,12 @@ var exec = require("child_process").exec;
 var fs = require("fs");
 
 var child = function (cmd, msg, callback) {
-    exec(cmd, function (result) {
-        finished(result);
-        callback(msg);
+    exec(cmd, function (error, stdout, stderr) {
+       console.log('stdout: ' + stdout);
+       console.log('stderr: ' + stderr);
+       if (error !== null) console.log('exec err: ' + error);
+       callback('success: ' + msg);
     });
-}
-
-// TODO find a way to use this
-var finished = function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) console.log('exec error: ' + error);
 }
 
 function createUser (callback) { 

@@ -77,17 +77,17 @@ configFiles(function (callback) {
     console.log(callback); 
     createUser(function (callback) {
         console.log(callback);
-//        createDb(function (callback) {
-  //          console.log(callback);
-    //        createEmployer(function (callback) {
-      //          console.log(callback);
-        //        createWorker(function (callback) {
-          //          console.log(callback);
-            //        createWork(function (callback) {
-              //          console.log(callback);
-                //    });
-                //});
-            //});
-        //});
+        createDb(function (callback) {
+            console.log(callback);
+            createEmployer(function (callback) {
+                console.log(callback);
+                createWorker(function (callback) {
+                    console.log(callback);
+                    createWork(function (callback) {
+                        console.log(callback);
+                    });
+                });
+            });
+        });
     });
 });

@@ -15,6 +15,7 @@ function createUser (callback) {
 }
 
 function savePassword (callback) {
+    // TODO replace this with just moving files to the proper locations
     fs.appendFile(process.env.HOME + "/.pgpass", "*:*:machetedb:machetedb_app_user:replace_me\n", callback("Appended password to .pgpass file."));
 }
 

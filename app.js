@@ -10,13 +10,51 @@ var child = function (cmd, msg, callback) {
     });
 }
 
+var copyFile = function (source, target, callback) {
+    var finished = false;
+
+    var fileToRead = fs.createReadStream(source);
+    fileToRead.on("error", done);
+
+    var fileToWrite = fs.createWriteStream(target);
+    fileToWrite.on("error", done);
+    fileToWrite.on("close", function (error) {
+        done();
+    });
+
+    fileToRead.pipe(fileToWrite);
+    
+    function done(err) {
+       if (!finished) {
+           callback(err);
+           finished = true;
+       }
+   }
+}
+
 function createUser (callback) { 
     child("psql -U postgres -d postgres -a -f machete-db-user.sql", "Created DB user.", callback);
 }
 
-function savePassword (callback) {
-    // TODO replace this with just moving files to the proper locations
-    fs.appendFile(process.env.HOME + "/.pgpass", "*:*:machetedb:machetedb_app_user:replace_me\n", callback("Appended password to .pgpass file."));
+function configFiles (callback) {
+    var pghbaconf = false;
+    var pgpass = false;
+    
+    copyFile('./.pgpass', process.env.HOME + '/.pgpass', function () {
+       pgpass = true;
+       alldone();
+    });
+
+    copyFile('./pg_hba.conf', '/etc/postgresql/9.4/main/pg_hba.conf', function () {
+       pghbaconf = true;
+       alldone();
+    });
+
+    function alldone() {
+        if (pghbaconf && pgpass) {
+            child("service postgresql restart", "Config files transferred.", callback);
+        }
+    }
 }
 
 function createDb (callback) {
@@ -35,9 +73,9 @@ function createWork (callback) {
     child("psql -U machetedb_app_user -d machetedb -a -f machete-work.sql", "Created work schema.", callback);
 }
 
-createUser(function (callback) { 
+configFiles(function (callback) { 
     console.log(callback); 
-    savePassword(function (callback) {
+    createUser(function (callback) {
         console.log(callback);
         createDb(function (callback) {
             console.log(callback);

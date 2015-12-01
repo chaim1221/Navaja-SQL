@@ -33,7 +33,7 @@ var copyFile = function (source, target, callback) {
 }
 
 function createUser (callback) { 
-    child("psql -U postgres -d postgres -a -f machete-db-user.sql", "Created DB user.", callback);
+    child("psql -U postgres -d postgres -a -f sql/machete-db-user.sql", "Created DB user.", callback);
 }
 
 function configFiles (callback) {
@@ -45,7 +45,7 @@ function configFiles (callback) {
        alldone();
     });
 
-    copyFile('./pg_hba.conf', '/etc/postgresql/9.4/main/pg_hba.conf', function () {
+    copyFile('./pg_hba.conf', '/etc/postgresql/9.3/main/pg_hba.conf', function () {
        pghbaconf = true;
        alldone();
     });
@@ -58,19 +58,19 @@ function configFiles (callback) {
 }
 
 function createDb (callback) {
-    child("export PGPASSWORD='replace_me'; psql -U machetedb_app_user -d postgres -a -f machete-db.sql; export PGPASSWORD=''", "Created DB.", callback);
+    child("export PGPASSWORD='replace_me'; psql -U machetedb_app_user -d postgres -a -f sql/machete-db.sql; export PGPASSWORD=''", "Created DB.", callback);
 }
 
 function createEmployer (callback) {
-    child("psql -U machetedb_app_user -d machetedb -a -f machete-employer.sql", "Created employer schema.", callback);
+    child("psql -U machetedb_app_user -d machetedb -a -f sql/machete-employer.sql", "Created employer schema.", callback);
 }
 
 function createWorker (callback) {
-    child("psql -U machetedb_app_user -d machetedb -a -f machete-worker.sql", "Created worker schema.", callback);
+    child("psql -U machetedb_app_user -d machetedb -a -f sql/machete-worker.sql", "Created worker schema.", callback);
 }
 
 function createWork (callback) {
-    child("psql -U machetedb_app_user -d machetedb -a -f machete-work.sql", "Created work schema.", callback);
+    child("psql -U machetedb_app_user -d machetedb -a -f sql/machete-work.sql", "Created work schema.", callback);
 }
 
 configFiles(function (callback) { 

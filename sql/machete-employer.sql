@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS employer.profile(
   , "returnCustomer" boolean NOT NULL
   , "receiveUpdates" boolean NOT NULL
   , "name" varchar(50) NOT NULL
-  , "email" varchar(254) NOT NULL
+  , "email" varchar(254) NOT NULL UNIQUE
   , "password" varchar(250) NOT NULL
   , "active" boolean NOT NULL
 );

@@ -1,5 +1,6 @@
 var exec = require("child_process").exec;
 var fs = require("fs");
+var errorMessage = "";
 
 var child = function (cmd, msg, callback) {
     exec(cmd, function (error, stdout, stderr) {
@@ -8,6 +9,9 @@ var child = function (cmd, msg, callback) {
        }
 
        if (stderr) {
+          if (stderr.indexOf('syntax error') > -1) {
+              errorMessage += '\n' + stderr;
+          }
           console.log('stderr: ' + stderr);
        }
 
@@ -94,6 +98,7 @@ configFiles(function (callback) {
                     console.log(callback);
                     createWork(function (callback) {
                         console.log(callback);
+                        if (errorMessage) throw new Error(errorMessage);
                     });
                 });
             });

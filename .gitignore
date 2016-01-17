@@ -1,1 +1,5 @@
+# any installed packages
 node_modules/
+
+# postgres connection string
+*pgpass*

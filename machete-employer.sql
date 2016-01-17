@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS employer.profile(
   , "password" varchar(250) NOT NULL
   , "active" boolean NOT NULL
 );
+ALTER TABLE employer.profile
+    ADD CONSTRAINT employer.profile_email_key UNIQUE (email);
 
 CREATE TABLE IF NOT EXISTS employer.business(
     "id" SERIAL PRIMARY KEY

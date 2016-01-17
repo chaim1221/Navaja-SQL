@@ -6,7 +6,6 @@
   "version": "0.1.7",
   "description": "Contains SQL scripts to create the Navaja-API database.",
   "main": "app.js",
-  // there are no node tests for this proj
   "scripts": {
     "test": "echo \"Error: no test specified\""
   },

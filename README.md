@@ -1,7 +1,7 @@
 # Navaja-SQL 
 Contains SQL scripts to create the Navaja-API database
 
-![Build Image](https://travis-ci.org/chaim1221/Navaja-SQL.svg)
+![Build Image](https://api.travis-ci.org/chaim1221/navaja-sql.svg)
 
 # Motto
 Every person has a right to a day job. The best way to gain experience and training is by getting out and doing the work that a person feels confident they can do, and the ability to use past employers to find future opportunity is part and parcel of the American dream. The Navaja-API is the backend for a set of tools that will empower workers and employers to help one another out in this way.

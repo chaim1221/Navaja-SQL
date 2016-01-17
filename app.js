@@ -3,9 +3,18 @@ var fs = require("fs");
 
 var child = function (cmd, msg, callback) {
     exec(cmd, function (error, stdout, stderr) {
-       console.log('stdout: ' + stdout);
-       console.log('stderr: ' + stderr);
-       if (error !== null) console.log('exec err: ' + error);
+       if (stdout) {
+           console.log('stdout: ' + stdout);
+       }
+
+       if (stderr) {
+          console.log('stderr: ' + stderr);
+       }
+
+       if (error) {
+           console.log('exec err: ' + error);
+       }
+
        callback('success: ' + msg);
     });
 }

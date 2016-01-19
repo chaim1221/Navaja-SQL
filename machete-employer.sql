@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS employer.profile(
   , "active" boolean NOT NULL
 );
 ALTER TABLE employer.profile
-    ADD CONSTRAINT employer.profile_email_key UNIQUE (email);
+    ADD CONSTRAINT employer_profile_email_key UNIQUE (email);
 
 CREATE TABLE IF NOT EXISTS employer.business(
     "id" SERIAL PRIMARY KEY
